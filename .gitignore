@@ -22,7 +22,8 @@ logs/
 *.csv
 *.json
 *.xlsx
-
+# all .txt files except README.txt, requirements.txt
+*.txt !README.txt !requirements.txt
 # OS generated files
 .DS_Store
 Thumbs.db
