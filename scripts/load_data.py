@@ -1,4 +1,7 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def load_data_from_txt(input_filepath, output_filepath):
@@ -13,6 +16,64 @@ def load_data_from_txt(input_filepath, output_filepath):
     data = pd.read_csv(input_filepath, delimiter='|') 
     data.to_csv(output_filepath, index=False)
     return data
+def missing_values(data):
+    """
+    Identify columns with missing values.
+    Args:
+        data (pandas.DataFrame): The input data.
+    Returns:
+        pandas.DataFrame: A DataFrame with columns containing missing values.
+    """
+    missing = data.isnull().sum()
+    missing = missing[missing > 0]
+    return missing
+
+def fill_missing_values(data):
+    """
+    Fill missing values in the given DataFrame.
+    This function fills missing values in both categorical and numerical columns.
+    For categorical columns, it fills missing values with the mode (most frequent value).
+    For numerical columns, it fills missing values with the mean of the column.
+    Parameters:
+    data (pd.DataFrame): The input DataFrame with potential missing values.
+    Returns:
+    pd.DataFrame: The DataFrame with missing values filled.
+    """ 
+    categorical_cols = ['Bank', 'AccountType', 'MaritalStatus', 'Gender', 'mmcode', 
+                        'VehicleType', 'make', 'Model', 'bodytype', 'NumberOfDoors', 
+                        'VehicleIntroDate', 'NewVehicle', 'WrittenOff', 'Rebuilt', 
+                        'Converted', 'CrossBorder']
+
+    for col in categorical_cols:
+        if col in data.columns:
+            data[col].fillna(data[col].mode()[0], inplace=True)
+    
+    # Numerical columns: Fill with mean
+    numerical_cols = ['Cylinders', 'cubiccapacity', 'kilowatts', 'CustomValueEstimate', 
+                      'CapitalOutstanding', 'NumberOfVehiclesInFleet']
+    
+    for col in numerical_cols:
+        if col in data.columns:
+            # Ensure the column is numeric
+            data[col] = pd.to_numeric(data[col], errors='coerce')  # Convert non-numeric to NaN
+            data[col].fillna(data[col].mean(), inplace=True)  # Fill with mean
+
+    return data
+
+# data structure
+def data_structure(data):
+    """
+    Display the structure of the data in a single table.
+    Args:
+        data (pandas.DataFrame): The input data.
+    """
+    data_results = pd.DataFrame({
+        'Column': data.columns,
+        'Missing Values': data.isnull().sum(),
+        'Unique Values': data.nunique(),
+        'Data Type': data.dtypes
+    })
+    return data_results
 
 
 def save_to_csv(df, output_filepath):
