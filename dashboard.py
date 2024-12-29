@@ -9,7 +9,7 @@ import seaborn as sns
 sys.path.append(os.path.abspath('..'))
 
 # Import functions from EDA.py and load_data.py
-from EDA import (
+from scripts.EDA import (
     descriptive_statistics,
     plot_countplot,
     bivariate_multivariate_analysis,
@@ -17,7 +17,7 @@ from EDA import (
     outlier_detection,
     creative_visualizations,
 )
-from load_data import load_data_from_txt, data_structure
+from scripts.load_data import load_data_from_txt, data_structure
 
 # Configure the Streamlit page
 st.set_page_config(page_title='Data Dashboard', layout='wide')
