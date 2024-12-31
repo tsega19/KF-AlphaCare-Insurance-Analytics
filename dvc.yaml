@@ -1,0 +1,9 @@
+stages:
+  preprocess:
+    cmd: python preprcess.py csv_data_name.csv preprocessed_data.csv
+    deps:
+      - data.csv
+      - preprcess.py
+    outs:
+      - preprcessed.csv
+      
