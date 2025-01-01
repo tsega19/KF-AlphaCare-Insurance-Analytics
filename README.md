@@ -5,12 +5,19 @@ This repository contains Python scripts and resources for performing Exploratory
 ## Project Structure
 
 ```
-├── EDA.py                # Core script containing EDA functions
-├── load_data.py          # Utility script for loading and preprocessing data
-├── dashboard.py          # Streamlit dashboard script for interactive analysis
-├── data/                 # Folder for storing datasets
-├── output/               # Folder for saving results and processed files
-├── README.md             # Documentation file
+KF-AlphaCare-Insurance-Analytics/
+├── data/                     # Folder for storing datasets
+│   ├── MachineLearningRating_v3.txt
+│   ├── MachineLearningRating_v3.csv
+├── output/                   # Folder for saving results and processed files
+├── scripts/                  # Folder for storing Python scripts
+│   ├── EDA.py                # Core script containing EDA functions
+│   ├── load_data.py          # Utility script for loading and preprocessing data
+│   ├── dashboard.py          # Streamlit dashboard script for interactive analysis
+│   ├── model.py              # Script for model building and evaluation
+│   ├── hypothesis_test.py    # Script for hypothesis testing and visualization
+├── requirements.txt          # File for listing required Python libraries
+├── README.md                 # Documentation file
 ```
 
 ## Features
@@ -38,10 +45,10 @@ This repository contains Python scripts and resources for performing Exploratory
 
 ## Requirements
 
-Install the required Python libraries:
+Install the required Python libraries listed in `requirements.txt`:
 
 ```bash
-pip install pandas numpy matplotlib seaborn streamlit
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -56,13 +63,13 @@ cd insurance-eda
 2. Run the main EDA script:
 
 ```bash
-python EDA.py
+python src/EDA.py
 ```
 
 3. Run the Streamlit dashboard:
 
 ```bash
-streamlit run dashboard.py
+streamlit run src/dashboard.py
 ```
 
 4. Modify paths in the scripts to point to your dataset if necessary.
@@ -76,4 +83,12 @@ The data used in this project includes features related to:
 - **Insurance Plans:** Premium amounts, claims, coverage type, etc.
 
 Ensure you have the dataset in the correct format before running the scripts or launching the dashboard.
+## Scripts
 
+The following scripts are included in this project:
+
+- `EDA.py`: Contains functions for performing exploratory data analysis.
+- `load_data.py`: Includes functions for loading and preprocessing data.
+- `dashboard.py`: Implements the Streamlit dashboard for interactive analysis.
+- `model.py`: Contains functions for data preparation, model building, evaluation, and feature importance analysis.
+- `hypothesis_test.ipynb`: Jupyter notebook for performing hypothesis testing on the data.
