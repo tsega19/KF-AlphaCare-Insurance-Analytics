@@ -69,7 +69,7 @@ python src/EDA.py
 3. Run the Streamlit dashboard:
 
 ```bash
-streamlit run src/dashboard.py
+streamlit run dashboard.py
 ```
 
 4. Modify paths in the scripts to point to your dataset if necessary.
