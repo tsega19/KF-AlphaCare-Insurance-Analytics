@@ -1,9 +1,33 @@
 stages:
   preprocess:
-    cmd: python preprcess.py csv_data_name.csv preprocessed_data.csv
+    cmd: python preprocess.py MachineLearningRating_v3.txt preprocessed_data.csv
     deps:
-      - data.csv
-      - preprcess.py
+      - MachineLearningRating_v3.txt
+      - preprocess.py
     outs:
-      - preprcessed.csv
-      
+      - preprocessed_data.csv
+
+  prepare_data:
+    cmd: python prepare_data.py preprocessed_data.csv prepared_data.csv
+    deps:
+      - preprocessed_data.csv
+      - prepare_data.py
+    outs:
+      - prepared_data.csv
+
+  train_model:
+    cmd: python train_model.py prepared_data.csv model.pkl
+    deps:
+      - prepared_data.csv
+      - train_model.py
+    outs:
+      - model.pkl
+
+  evaluate_model:
+    cmd: python evaluate_model.py model.pkl prepared_data.csv evaluation.txt
+    deps:
+      - model.pkl
+      - prepared_data.csv
+      - evaluate_model.py
+    outs:
+      - evaluation.txt
