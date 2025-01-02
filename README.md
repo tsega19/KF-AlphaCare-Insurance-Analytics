@@ -63,7 +63,7 @@ cd insurance-eda
 2. Run the main EDA script:
 
 ```bash
-python src/EDA.py
+python sripts/EDA.py
 ```
 
 3. Run the Streamlit dashboard:
